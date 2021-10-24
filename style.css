@@ -73,7 +73,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-grow: 1;
+    flex-grow: 1 0;
 }
 .main-navbar .navbar-container ul li{
     padding: 5px 30px;
@@ -229,5 +229,12 @@ body {
     }
     .main-navbar {
         display: none;
+    }
+
+    .main-header-container .header-logo {
+        padding: 0 5px;
+    }
+    .main-header-container .main-title {
+        font-size: 1.8em;
     }
 }
