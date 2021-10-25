@@ -8,6 +8,11 @@ body {
     background: #aaa;
 }
 
+small, h2 {
+    height: 14px;
+    display:flex;
+}
+
 
 /* ///// */
 /* MAIN BOX */
