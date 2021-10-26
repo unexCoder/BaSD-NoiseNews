@@ -225,7 +225,7 @@ small, h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1em;
+    font-size: 0.85em;
 }
 /* ///// */
 
@@ -242,7 +242,7 @@ small, h2 {
 .suscription-main-section {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content:flex-start;
     flex-grow: 1;
     margin: 2px 5px;
     position: relative;
@@ -265,6 +265,11 @@ small, h2 {
     padding: 5px 0;
     display: flex;
     justify-content: center;
+}
+
+.suscription-form input {
+    border: none;
+    margin: 2px;
 }
 
 .suscription-full-name, .suscription-email, .suscription-password, .suscription-age,
@@ -295,7 +300,6 @@ small, h2 {
     background: #aaa;
     color: #000;
 }
-
 /* ///// */
 
 
