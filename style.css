@@ -229,6 +229,75 @@ small, h2 {
 }
 /* ///// */
 
+/* Suscription style */
+.footer-suscription {
+    width: 100%;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1em;
+}
+
+.suscription-main-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    flex-grow: 1;
+    margin: 2px 5px;
+    position: relative;
+    top: 56px;
+}
+
+.suscription-hello {
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    height: 30px;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.suscription-form {
+    width:100%;
+    background: #000;
+    color: #fff;
+    padding: 5px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.suscription-full-name, .suscription-email, .suscription-password, .suscription-age,
+.suscription-phone, .suscription-address, .suscription-city, .suscription-postal-code,
+.suscription-id {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2px 5px;
+}
+
+.suscription-full-name input {
+    color: #777;
+} 
+.suscription-email input {
+    color: #777;
+}
+
+.suscription-submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 0;
+}
+
+.suscription-submit input {
+    background: #aaa;
+    color: #000;
+}
+
+/* ///// */
+
 
 /* MEDOA QUERYS */
 @media screen and (max-width: 700px) {
