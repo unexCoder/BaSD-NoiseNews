@@ -3,8 +3,11 @@ window.onload = function() {
     
     // get all input elements with type "text"
     var userInput = document.querySelectorAll('input[type=text]')
-    console.log(userInput)
-
+    console.log(userInput) 
+    
+    var password = document.querySelector('input[type=password]')
+    console.log(password) 
+    
     // autocomplete header
     let name = 'Hello!' 
     var hello = document.querySelector('.suscription-hello')
@@ -58,7 +61,11 @@ window.onload = function() {
                 // age validation
                 let age = e.target.value
                 age = parseInt(age,10)
-                if (Number.isInteger(age)&&age<18 || typeof(age) === NaN) {
+                if (Number.isInteger(age) == true) {                    
+                    if (age < 18) {
+                        console.log('not-valid')
+                    }
+                } else {
                     console.log('not-valid')
                 }
                 break;
@@ -106,7 +113,11 @@ window.onload = function() {
                 // id number validation 
                 case 'ID-number':
                     const id = e.target.value
-                    if(id.length < 7 || id.length > 8) {
+                    if (Number.isInteger( parseInt(id,10))==true) {                        
+                        if(id.length < 7 || id.length > 8) {
+                            console.log('not-valid')
+                        }
+                    } else {
                         console.log('not-valid')
                     }
                 break;
