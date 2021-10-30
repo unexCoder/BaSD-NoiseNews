@@ -7,7 +7,9 @@ window.onload = function() {
     
     var password = document.querySelector('input[type=password]')
     console.log(password) 
-    
+    console.log('/////////////') 
+
+
     // autocomplete header
     let name = 'Hello!' 
     var hello = document.querySelector('.suscription-hello')
@@ -19,69 +21,70 @@ window.onload = function() {
     
     // add blur event to all inputs
     for (let i = 0; i < userInput.length; i++) {
-        userInput[i].addEventListener('blur',runEvent);
+        userInput[i].addEventListener('blur',blurEvent);
+        userInput[i].addEventListener('keydown',keyDownEvent);
     }
-        
-    function runEvent(e) {
+    // add blur event to password inputs
+    password.addEventListener('blur',blurEvent);
+    password.addEventListener('keydown',keyDownEvent);
+
+    function blurEvent(e) {
         // console.log(e.target.id)
+
+        // warning element
+        const warning = document.createElement('small')
+        warning.style.color='#ff0000'
+        warning.style.fontSize='12px'
+        warning.style.justifyContent='flex-end'
+        warning.className = 'warning'
+
         switch (e.target.id) {
 
-            // full name validation
+            // full name validation w/regexp
             case 'full-name':
                 const fName = e.target.value
-                const warning = document.createElement('small')
-                warning.style.color='#ff0000'
-                warning.style.fontSize='12px'
-                warning.style.justifyContent='flex-end'
-                
-                if(fName.length<6) {
+                regexp = /^[a-zA-Z-,]+\s+[a-zA-Z-, ]+$/
+                if(regexp.test(fName)==false || fName.length < 6) {
                     warning.textContent='your name must be at least 6 letters long'
-                    console.log(warning)
-                } 
-                if(fName.search(' ') < 1) {
-                    warning.textContent='your must enter your name and last name'
-                    console.log(warning)
+                    const container = document.querySelector('.suscription-full-name') 
+                    container.parentNode.insertBefore(warning,container.nextSibling)
                 }
-                const container = document.querySelector('.suscription-full-name') 
-                console.log(container)
-                container.parentNode.insertBefore(warning,container.nextSibling)
             break;
 
-            // email validation 
+            // email validation refactored w/regexp
             case 'email':
                 const email = e.target.value
-                var regexp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                var regexp = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/;
                 if(regexp.test(email)==false) {
-                    console.log('not-valid')
+                    // console.log('not-valid')
+                    warning.textContent='enter a avalid email'
+                    const container = document.querySelector('.suscription-email') 
+                    container.parentNode.insertBefore(warning,container.nextSibling)
                 }
             break;
 
-            // age validation
+            // age validation w/regexp
             case 'age':
-                // age validation
+                // age validation refacored w/regexp
                 let age = e.target.value
-                age = parseInt(age,10)
-                if (Number.isInteger(age) == true) {                    
-                    if (age < 18) {
-                        console.log('not-valid')
-                    }
-                } else {
-                    console.log('not-valid')
+                var regexp = /^(1[89]|[2-9][0-9])$/g
+                if(regexp.test(age)==false) {
+                    // console.log('not-valid')
+                    warning.textContent='enter a number between 18 and 99'
+                    const container = document.querySelector('.suscription-age') 
+                    container.parentNode.insertBefore(warning,container.nextSibling)
                 }
                 break;
                 
-                // pgone number validation
                 case 'phone':
-                    // validate phone number
+                    // validate phone number refactored w/regexp
                     const phone = e.target.value
-                    if(phone.length < 7) {
-                        console.log('not-valid')
-                    }              
-                    // regexp
-                    var regexp = /[(|)| |-]/g;
-                    var myArray = regexp.exec(phone);
-                    if(regexp.lastIndex > 0) {
-                        console.log('not-valid') 
+                    var regexp = /[0-9][^- ()]{6,}/g
+                    if(regexp.test(phone)==false) {
+                        // console.log('not-valid')
+                        warning.textContent='enter number without spaces or other characters'
+                        const container = document.querySelector('.suscription-phone') 
+                        container.parentNode.insertBefore(warning,container.nextSibling)
                     }
                 break;
                 
@@ -90,40 +93,67 @@ window.onload = function() {
                     const address = e.target.value
                     var regexp = /^[A-z0-9\s\.,/-]+$/
                     if(regexp.test(address)==false || address.search(' ') < 1) {
-                        console.log('not-valid')
+                        // console.log('not-valid')
+                        warning.textContent='enter street name and number'
+                        const container = document.querySelector('.suscription-address') 
+                        container.parentNode.insertBefore(warning,container.nextSibling)    
                     }
                 break;
                 
-                // city validation
+                // city validation w/regexp
                 case 'city':
                     const city = e.target.value
-                    if(city.length < 3) {
-                        console.log('not-valid')
-                    }               
-                break;
-
-                // postal code validation 
-                case 'postal-code':
-                    const postalCode = e.target.value
-                    if(postalCode.length < 3) {
-                        console.log('not-valid')
+                    regexp = /^[A-Za-z]{3,}$/
+                    if(regexp.test(city)==false) {
+                        warning.textContent='enter at least 3 letters please'
+                        const container = document.querySelector('.suscription-city') 
+                        container.parentNode.insertBefore(warning,container.nextSibling)                       
                     }
                 break;
 
-                // id number validation 
+                // postal code validation w/regexp
+                case 'postal-code':
+                    const postalCode = e.target.value
+                    regexp = /^[A-Za-z0-9]{3,}$/
+                    if(regexp.test(postalCode)==false) {
+                        warning.textContent='enter at least 3 letters or numbers please'
+                        const container = document.querySelector('.suscription-postal-code') 
+                        container.parentNode.insertBefore(warning,container.nextSibling)    
+                    }
+                break;
+
+                // id number validation refactored w/regexp
                 case 'ID-number':
                     const id = e.target.value
-                    if (Number.isInteger( parseInt(id,10))==true) {                        
-                        if(id.length < 7 || id.length > 8) {
-                            console.log('not-valid')
-                        }
-                    } else {
-                        console.log('not-valid')
+                    regexp = /^[0-9]{7,8}$/
+                    if(regexp.test(id)==false) {
+                        warning.textContent='enter a valid ID number please'
+                        const container = document.querySelector('.suscription-id') 
+                        container.parentNode.insertBefore(warning,container.nextSibling)        
                     }
                 break;
                 
+                // validate password w/regexp
+                case 'password':
+                    const password = e.target.value
+                    var regexp = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/
+                    if(regexp.test(password)==false) {
+                        warning.textContent='enter a password with at least 1 number and one letter and 8 characters '
+                        const container = document.querySelector('.suscription-password') 
+                        container.parentNode.insertBefore(warning,container.nextSibling)                               
+                    }
+                // // // //// //// //// //// //
+                break;
             default:
                 break;
+        }
+    }
+
+    function keyDownEvent (e) {
+        var warnings = document.querySelector('.warning')
+        console.log(warnings)
+        if (warnings != null) {
+            warnings.parentElement.removeChild(warnings)
         }
     }
 }
