@@ -209,7 +209,7 @@ window.onload = function() {
         if(fName == null || email == null || age == null || phone == null ||
             address == null || city == null || postalCode == null || id == null ||
             password == null ||repeatPassword == null) {
-            alert('please, complete all submission')
+            alert('please, complete all submission form')
         } else if (warnings.length < 1) {
             const str = 'Hello '+fName+'!'+'\n'+'Your submission info are:'+'\n'+
             'Email: '+email+'\n'+'Age: '+age+'\n'+'Phone: '+phone+'\n'+'Address: '+

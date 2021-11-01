@@ -272,9 +272,6 @@ small, h2 {
     border: solid 1px #000;
 }
 
-.suscription-form input:hover {
-    /* color: #fff; */
-}
 .suscription-form input:focus {
     color: #fff;
     background-color: #000;
