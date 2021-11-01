@@ -69,7 +69,7 @@ window.onload = function() {
                     var regexp = /^(1[89]|[2-9][0-9])$/g
                     if(regexp.test(age)==false) {
                         // console.log('not-valid')
-                        warning.textContent='enter a number between 18 and 99'
+                        warning.textContent='your age must be at least 18 years old'
                         const container = document.querySelector('.suscription-age') 
                         container.parentNode.insertBefore(warning,container.nextSibling)
                     }
@@ -81,7 +81,7 @@ window.onload = function() {
                         var regexp = /^[0-9]{7,10}$/g
                         if(regexp.test(phone)==false) {
                             // console.log('not-valid')
-                            warning.textContent='enter number without spaces or other characters'
+                            warning.textContent='enter phone number without spaces or other chars'
                             const container = document.querySelector('.suscription-phone') 
                             container.parentNode.insertBefore(warning,container.nextSibling)
                         }
@@ -104,7 +104,7 @@ window.onload = function() {
                         city = e.target.value
                         regexp = /^[A-Za-z]{3,}$/
                         if(regexp.test(city)==false) {
-                            warning.textContent='enter at least 3 letters please'
+                            warning.textContent='enter at least 3 letters fot city'
                             const container = document.querySelector('.suscription-city') 
                             container.parentNode.insertBefore(warning,container.nextSibling)                       
                         }
@@ -115,7 +115,7 @@ window.onload = function() {
                         postalCode = e.target.value
                         regexp = /^[A-Za-z0-9]{3,}$/
                         if(regexp.test(postalCode)==false) {
-                            warning.textContent='enter at least 3 letters or numbers please'
+                            warning.textContent='enter at least 3 letters or numbers for postal code'
                             const container = document.querySelector('.suscription-postal-code') 
                             container.parentNode.insertBefore(warning,container.nextSibling)    
                         }
@@ -137,7 +137,7 @@ window.onload = function() {
                         password = e.target.value
                         var regexp = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/
                         if(regexp.test(password)==false) {
-                            warning.textContent='enter a password with at least 1 number and one letter and 8 characters'
+                            warning.textContent='enter a password with at least 1 number, 1 letter and 8 chars long'
                             const container = document.querySelector('.suscription-password') 
                             container.parentNode.insertBefore(warning,container.nextSibling)                               
                         }
@@ -182,6 +182,8 @@ window.onload = function() {
             address+'\n'+'City: '+city+'\n'+'Postal Code: '+postalCode+'\n'+
             'ID Number: '+id
             alert(str)
+        } else {
+            alert(warnings.innerHTML)
         }
     }
 }
