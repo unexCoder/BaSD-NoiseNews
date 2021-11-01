@@ -47,7 +47,7 @@ window.onload = function() {
                         const container = document.querySelector('.suscription-full-name') 
                         // just one warning!
                         if(container.nextSibling.nodeName == '#text') {
-                            warning.textContent='your name must be at least 6 letters long'
+                            warning.textContent='your name must be 6 letters or more'
                             container.parentNode.insertBefore(warning,container.nextSibling)
                         }
                     }
@@ -62,7 +62,7 @@ window.onload = function() {
                         const container = document.querySelector('.suscription-email') 
                         // just one warning!
                         if(container.nextSibling.nodeName == '#text') {
-                            warning.textContent='enter a avalid email' 
+                            warning.textContent='enter a valid email please' 
                             container.parentNode.insertBefore(warning,container.nextSibling)
                         }
                     }
@@ -78,7 +78,7 @@ window.onload = function() {
                         const container = document.querySelector('.suscription-age') 
                         // just one warning!
                         if(container.nextSibling.nodeName == '#text') {
-                            warning.textContent='your age must be at least 18 years old'
+                            warning.textContent='your age must be 18 years or older'
                             container.parentNode.insertBefore(warning,container.nextSibling)
                         }
                     }
@@ -93,7 +93,7 @@ window.onload = function() {
                         const container = document.querySelector('.suscription-phone') 
                         // just one warning!
                         if(container.nextSibling.nodeName == '#text') {
-                            warning.textContent='enter phone number without spaces or other chars'
+                            warning.textContent='enter numbers without spaces or other chars'
                             container.parentNode.insertBefore(warning,container.nextSibling)
                         }
                     }
@@ -122,7 +122,7 @@ window.onload = function() {
                         const container = document.querySelector('.suscription-city') 
                         // just one warning!
                         if(container.nextSibling.nodeName == '#text') {
-                            warning.textContent='enter at least 3 letters fot city'
+                            warning.textContent='enter at least 3 letters for city'
                             container.parentNode.insertBefore(warning,container.nextSibling)                       
                         }
                     }
@@ -164,7 +164,7 @@ window.onload = function() {
                         const container = document.querySelector('.suscription-password') 
                         // just one warning!
                         if(container.nextSibling.nodeName == '#text') {
-                            warning.textContent='enter a password with at least 1 number, 1 letter and 8 chars long'
+                            warning.textContent='enter a password with at least 1 number, 1 letter and 8 chars or more'
                             container.parentNode.insertBefore(warning,container.nextSibling)                               
                         }
                     }
