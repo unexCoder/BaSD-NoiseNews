@@ -17,12 +17,12 @@ window.onload = function() {
     // add blur/keydown event to all inputs
     for (let i = 0; i < userInput.length; i++) {
         userInput[i].addEventListener('blur',blurEvent);
-        userInput[i].addEventListener('keydown',keyDownEvent);
+        userInput[i].addEventListener('focus',focusEvent);
     }
     // add blur/keydown event to password inputs
     for (let i = 0; i < password.length; i++) {
         password[i].addEventListener('blur',blurEvent);;
-        password[i].addEventListener('keydown',keyDownEvent);
+        password[i].addEventListener('focus',focusEvent);
     }
 
     function blurEvent(e) {
@@ -44,9 +44,12 @@ window.onload = function() {
                     fName = e.target.value
                     regexp = /^[a-zA-Z-,]+\s+[a-zA-Z-, ]+$/
                     if(regexp.test(fName)==false || fName.length < 6) {
-                        warning.textContent='your name must be at least 6 letters long'
                         const container = document.querySelector('.suscription-full-name') 
-                        container.parentNode.insertBefore(warning,container.nextSibling)
+                        // just one warning!
+                        if(container.nextSibling.nodeName == '#text') {
+                            warning.textContent='your name must be at least 6 letters long'
+                            container.parentNode.insertBefore(warning,container.nextSibling)
+                        }
                     }
                 break;
     
@@ -56,9 +59,12 @@ window.onload = function() {
                     var regexp = /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/;
                     if(regexp.test(email)==false) {
                         // console.log('not-valid')
-                        warning.textContent='enter a avalid email'
                         const container = document.querySelector('.suscription-email') 
-                        container.parentNode.insertBefore(warning,container.nextSibling)
+                        // just one warning!
+                        if(container.nextSibling.nodeName == '#text') {
+                            warning.textContent='enter a avalid email' 
+                            container.parentNode.insertBefore(warning,container.nextSibling)
+                        }
                     }
                 break;
     
@@ -69,9 +75,12 @@ window.onload = function() {
                     var regexp = /^(1[89]|[2-9][0-9])$/g
                     if(regexp.test(age)==false) {
                         // console.log('not-valid')
-                        warning.textContent='your age must be at least 18 years old'
                         const container = document.querySelector('.suscription-age') 
-                        container.parentNode.insertBefore(warning,container.nextSibling)
+                        // just one warning!
+                        if(container.nextSibling.nodeName == '#text') {
+                            warning.textContent='your age must be at least 18 years old'
+                            container.parentNode.insertBefore(warning,container.nextSibling)
+                        }
                     }
                     break;
                     
@@ -81,9 +90,12 @@ window.onload = function() {
                         var regexp = /^[0-9]{7,10}$/g
                         if(regexp.test(phone)==false) {
                             // console.log('not-valid')
-                            warning.textContent='enter phone number without spaces or other chars'
                             const container = document.querySelector('.suscription-phone') 
-                            container.parentNode.insertBefore(warning,container.nextSibling)
+                            // just one warning!
+                            if(container.nextSibling.nodeName == '#text') {
+                                warning.textContent='enter phone number without spaces or other chars'
+                                container.parentNode.insertBefore(warning,container.nextSibling)
+                            }
                         }
                     break;
                     
@@ -93,9 +105,12 @@ window.onload = function() {
                         var regexp = /^[A-z0-9\s\.,/-]+$/
                         if(regexp.test(address)==false || address.search(' ') < 1) {
                             // console.log('not-valid')
-                            warning.textContent='enter street name and number'
                             const container = document.querySelector('.suscription-address') 
-                            container.parentNode.insertBefore(warning,container.nextSibling)    
+                            // just one warning!
+                            if(container.nextSibling.nodeName == '#text') {
+                                warning.textContent='enter street name and number'
+                                container.parentNode.insertBefore(warning,container.nextSibling)    
+                            }
                         }
                     break;
                     
@@ -104,9 +119,12 @@ window.onload = function() {
                         city = e.target.value
                         regexp = /^[A-Za-z]{3,}$/
                         if(regexp.test(city)==false) {
-                            warning.textContent='enter at least 3 letters fot city'
                             const container = document.querySelector('.suscription-city') 
-                            container.parentNode.insertBefore(warning,container.nextSibling)                       
+                            // just one warning!
+                            if(container.nextSibling.nodeName == '#text') {
+                                warning.textContent='enter at least 3 letters fot city'
+                                container.parentNode.insertBefore(warning,container.nextSibling)                       
+                            }
                         }
                     break;
     
@@ -115,9 +133,12 @@ window.onload = function() {
                         postalCode = e.target.value
                         regexp = /^[A-Za-z0-9]{3,}$/
                         if(regexp.test(postalCode)==false) {
-                            warning.textContent='enter at least 3 letters or numbers for postal code'
                             const container = document.querySelector('.suscription-postal-code') 
-                            container.parentNode.insertBefore(warning,container.nextSibling)    
+                            // just one warning!
+                            if(container.nextSibling.nodeName == '#text') {
+                                warning.textContent='enter at least 3 letters or numbers for postal code'
+                                container.parentNode.insertBefore(warning,container.nextSibling)    
+                            }
                         }
                     break;
     
@@ -126,9 +147,12 @@ window.onload = function() {
                         id = e.target.value
                         regexp = /^[0-9]{7,8}$/
                         if(regexp.test(id)==false) {
-                            warning.textContent='enter a valid ID number please'
                             const container = document.querySelector('.suscription-id') 
-                            container.parentNode.insertBefore(warning,container.nextSibling)        
+                            // just one warning!
+                            if(container.nextSibling.nodeName == '#text') {
+                                warning.textContent='enter a valid ID number please'
+                                container.parentNode.insertBefore(warning,container.nextSibling)        
+                            }
                         }
                     break;
                     
@@ -137,9 +161,12 @@ window.onload = function() {
                         password = e.target.value
                         var regexp = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/
                         if(regexp.test(password)==false) {
-                            warning.textContent='enter a password with at least 1 number, 1 letter and 8 chars long'
                             const container = document.querySelector('.suscription-password') 
-                            container.parentNode.insertBefore(warning,container.nextSibling)                               
+                            // just one warning!
+                            if(container.nextSibling.nodeName == '#text') {
+                                warning.textContent='enter a password with at least 1 number, 1 letter and 8 chars long'
+                                container.parentNode.insertBefore(warning,container.nextSibling)                               
+                            }
                         }
                     break;
 
@@ -147,9 +174,12 @@ window.onload = function() {
                     case 'repeat-password':
                         repeatPassword = e.target.value
                         if(repeatPassword != password) {
-                            warning.textContent='your password does not match'
                             const container = document.querySelector('.suscription-repeat-password') 
-                            container.parentNode.insertBefore(warning,container.nextSibling)                               
+                            // just one warning!
+                            if(container.nextSibling.nodeName == '#text') {
+                                warning.textContent='your password does not match'
+                                container.parentNode.insertBefore(warning,container.nextSibling)                               
+                            }
                         }
                     // // // //// //// //// //// //
                     break;
@@ -159,11 +189,11 @@ window.onload = function() {
         }
     }
 
-    // keydown event remove warning msgs
-    function keyDownEvent (e) {
-        var warnings = document.querySelector('.warning')
-        if (warnings != null) {
-            warnings.parentElement.removeChild(warnings)
+    // foucs event remove warning msgs
+    function focusEvent (e) {
+        const warning = e.target.parentElement.nextSibling
+        if (warning.className == 'warning') {
+            warning.parentElement.removeChild(warning)
         }
     }
 
@@ -173,19 +203,25 @@ window.onload = function() {
     submit.parentElement.parentElement.addEventListener('submit',submitEvent)
     
     function submitEvent(e){
-        // prevent submittings while warnings
-        var warnings = document.querySelector('.warning')
-        if (warnings == null) {
-            e.preventDefault()
+        e.preventDefault()
+        var warnings = document.querySelectorAll('.warning')
+        // prevent submittings while warnings       
+        if(fName == null || email == null || age == null || phone == null ||
+            address == null || city == null || postalCode == null || id == null ||
+            password == null ||repeatPassword == null) {
+            alert('please, complete all submission')
+        } else if (warnings.length < 1) {
             const str = 'Hello '+fName+'!'+'\n'+'Your submission info are:'+'\n'+
             'Email: '+email+'\n'+'Age: '+age+'\n'+'Phone: '+phone+'\n'+'Address: '+
             address+'\n'+'City: '+city+'\n'+'Postal Code: '+postalCode+'\n'+
             'ID Number: '+id
             alert(str)
         } else {
-            alert(warnings.innerHTML)
+            var str_2 = ''
+            for (let i = 0; i < warnings.length; i++) {
+                str_2 = str_2 + warnings[i].innerHTML+'\n';
+            }
+            alert(str_2)
         }
     }
 }
-            
-            

@@ -269,14 +269,17 @@ small, h2 {
 .suscription-form input {
     border: none;
     margin: 2px;
+    border: solid 1px #000;
+}
+
+.suscription-form input:hover {
+    /* color: #fff; */
 }
 .suscription-form input:focus {
-    color: #000;
-}
-.suscription-form input:hover {
-    background: #000;
     color: #fff;
-    outline: none;
+    background-color: #000;
+    outline:none;
+    border: solid 1px #fff;
 }
 
 .suscription-full-name, .suscription-email, .suscription-password, .suscription-age,
