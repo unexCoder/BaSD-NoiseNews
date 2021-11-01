@@ -27,7 +27,7 @@ window.onload = function() {
 
     function blurEvent(e) {
 
-        // just for cleanner view
+        // just for cleanner view / prevent warning on empty input
         if(e.target.value != '') {
 
             // warning element
@@ -82,109 +82,109 @@ window.onload = function() {
                             container.parentNode.insertBefore(warning,container.nextSibling)
                         }
                     }
-                    break;
+                break;
                     
-                    case 'phone':
-                        // validate phone number refactored w/regexp
-                        phone = e.target.value
-                        var regexp = /^[0-9]{7,10}$/g
-                        if(regexp.test(phone)==false) {
-                            // console.log('not-valid')
-                            const container = document.querySelector('.suscription-phone') 
-                            // just one warning!
-                            if(container.nextSibling.nodeName == '#text') {
-                                warning.textContent='enter phone number without spaces or other chars'
-                                container.parentNode.insertBefore(warning,container.nextSibling)
-                            }
+                case 'phone':
+                    // validate phone number refactored w/regexp
+                    phone = e.target.value
+                    var regexp = /^[0-9]{7,10}$/g
+                    if(regexp.test(phone)==false) {
+                        // console.log('not-valid')
+                        const container = document.querySelector('.suscription-phone') 
+                        // just one warning!
+                        if(container.nextSibling.nodeName == '#text') {
+                            warning.textContent='enter phone number without spaces or other chars'
+                            container.parentNode.insertBefore(warning,container.nextSibling)
                         }
-                    break;
+                    }
+                break;
                     
-                    // address validation
-                    case 'address':
-                        address = e.target.value
-                        var regexp = /^[A-z0-9\s\.,/-]+$/
-                        if(regexp.test(address)==false || address.search(' ') < 1) {
-                            // console.log('not-valid')
-                            const container = document.querySelector('.suscription-address') 
-                            // just one warning!
-                            if(container.nextSibling.nodeName == '#text') {
-                                warning.textContent='enter street name and number'
-                                container.parentNode.insertBefore(warning,container.nextSibling)    
-                            }
+                // address validation
+                case 'address':
+                    address = e.target.value
+                    var regexp = /^[A-z0-9\s\.,/-]+$/
+                    if(regexp.test(address)==false || address.search(' ') < 1) {
+                        // console.log('not-valid')
+                        const container = document.querySelector('.suscription-address') 
+                        // just one warning!
+                        if(container.nextSibling.nodeName == '#text') {
+                            warning.textContent='enter street name and number'
+                            container.parentNode.insertBefore(warning,container.nextSibling)    
                         }
-                    break;
+                    }
+                break;
                     
-                    // city validation w/regexp
-                    case 'city':
-                        city = e.target.value
-                        regexp = /^[A-Za-z]{3,}$/
-                        if(regexp.test(city)==false) {
-                            const container = document.querySelector('.suscription-city') 
-                            // just one warning!
-                            if(container.nextSibling.nodeName == '#text') {
-                                warning.textContent='enter at least 3 letters fot city'
-                                container.parentNode.insertBefore(warning,container.nextSibling)                       
-                            }
+                // city validation w/regexp
+                case 'city':
+                    city = e.target.value
+                    regexp = /^[A-Za-z]{3,}$/
+                    if(regexp.test(city)==false) {
+                        const container = document.querySelector('.suscription-city') 
+                        // just one warning!
+                        if(container.nextSibling.nodeName == '#text') {
+                            warning.textContent='enter at least 3 letters fot city'
+                            container.parentNode.insertBefore(warning,container.nextSibling)                       
                         }
-                    break;
+                    }
+                break;
     
-                    // postal code validation w/regexp
-                    case 'postal-code':
-                        postalCode = e.target.value
-                        regexp = /^[A-Za-z0-9]{3,}$/
-                        if(regexp.test(postalCode)==false) {
-                            const container = document.querySelector('.suscription-postal-code') 
-                            // just one warning!
-                            if(container.nextSibling.nodeName == '#text') {
-                                warning.textContent='enter at least 3 letters or numbers for postal code'
-                                container.parentNode.insertBefore(warning,container.nextSibling)    
-                            }
+                // postal code validation w/regexp
+                case 'postal-code':
+                    postalCode = e.target.value
+                    regexp = /^[A-Za-z0-9]{3,}$/
+                    if(regexp.test(postalCode)==false) {
+                        const container = document.querySelector('.suscription-postal-code') 
+                        // just one warning!
+                        if(container.nextSibling.nodeName == '#text') {
+                            warning.textContent='enter at least 3 letters or numbers for postal code'
+                            container.parentNode.insertBefore(warning,container.nextSibling)    
                         }
-                    break;
+                    }
+                break;
     
-                    // id number validation refactored w/regexp
-                    case 'ID-number':
-                        id = e.target.value
-                        regexp = /^[0-9]{7,8}$/
-                        if(regexp.test(id)==false) {
-                            const container = document.querySelector('.suscription-id') 
-                            // just one warning!
-                            if(container.nextSibling.nodeName == '#text') {
-                                warning.textContent='enter a valid ID number please'
-                                container.parentNode.insertBefore(warning,container.nextSibling)        
-                            }
+                // id number validation refactored w/regexp
+                case 'ID-number':
+                    id = e.target.value
+                    regexp = /^[0-9]{7,8}$/
+                    if(regexp.test(id)==false) {
+                        const container = document.querySelector('.suscription-id') 
+                        // just one warning!
+                        if(container.nextSibling.nodeName == '#text') {
+                            warning.textContent='enter a valid ID number please'
+                            container.parentNode.insertBefore(warning,container.nextSibling)        
                         }
-                    break;
+                    }
+                break;
                     
-                    // validate password w/regexp
-                    case 'password':
-                        password = e.target.value
-                        var regexp = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/
-                        if(regexp.test(password)==false) {
-                            const container = document.querySelector('.suscription-password') 
-                            // just one warning!
-                            if(container.nextSibling.nodeName == '#text') {
-                                warning.textContent='enter a password with at least 1 number, 1 letter and 8 chars long'
-                                container.parentNode.insertBefore(warning,container.nextSibling)                               
-                            }
+                // validate password w/regexp
+                case 'password':
+                    password = e.target.value
+                    var regexp = /^(?=.*\d)(?=.*[a-zA-Z]).{8,}$/
+                    if(regexp.test(password)==false) {
+                        const container = document.querySelector('.suscription-password') 
+                        // just one warning!
+                        if(container.nextSibling.nodeName == '#text') {
+                            warning.textContent='enter a password with at least 1 number, 1 letter and 8 chars long'
+                            container.parentNode.insertBefore(warning,container.nextSibling)                               
                         }
-                    break;
+                    }
+                break;
 
-                    // validate repeat password
-                    case 'repeat-password':
-                        repeatPassword = e.target.value
-                        if(repeatPassword != password) {
-                            const container = document.querySelector('.suscription-repeat-password') 
-                            // just one warning!
-                            if(container.nextSibling.nodeName == '#text') {
-                                warning.textContent='your password does not match'
-                                container.parentNode.insertBefore(warning,container.nextSibling)                               
-                            }
+                // validate repeat password
+                case 'repeat-password':
+                    repeatPassword = e.target.value
+                    if(repeatPassword != password) {
+                        const container = document.querySelector('.suscription-repeat-password') 
+                        // just one warning!
+                        if(container.nextSibling.nodeName == '#text') {
+                            warning.textContent='your password does not match'
+                            container.parentNode.insertBefore(warning,container.nextSibling)                               
                         }
-                    // // // //// //// //// //// //
-                    break;
+                    }
+                break;
+                // // // //// //// //// //// //
                 default:
-                    break;
+                break;
             }
         }
     }
