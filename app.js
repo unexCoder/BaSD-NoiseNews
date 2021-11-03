@@ -203,20 +203,21 @@ window.onload = function() {
     submit.parentElement.parentElement.addEventListener('submit',submitEvent)
     
     function submitEvent(e){
-        e.preventDefault()
         var warnings = document.querySelectorAll('.warning')
         // prevent submittings while warnings       
         if(fName == null || email == null || age == null || phone == null ||
             address == null || city == null || postalCode == null || id == null ||
             password == null ||repeatPassword == null) {
-            alert('please, complete all submission form')
-        } else if (warnings.length < 1) {
-            const str = 'Hello '+fName+'!'+'\n'+'Your submission info are:'+'\n'+
-            'Email: '+email+'\n'+'Age: '+age+'\n'+'Phone: '+phone+'\n'+'Address: '+
-            address+'\n'+'City: '+city+'\n'+'Postal Code: '+postalCode+'\n'+
-            'ID Number: '+id
-            alert(str)
-        } else {
+                e.preventDefault()
+                alert('please, complete all submission form')
+            } else if (warnings.length < 1) {
+                const str = 'Hello '+fName+'!'+'\n'+'Your submission info are:'+'\n'+
+                'Email: '+email+'\n'+'Age: '+age+'\n'+'Phone: '+phone+'\n'+'Address: '+
+                address+'\n'+'City: '+city+'\n'+'Postal Code: '+postalCode+'\n'+
+                'ID Number: '+id
+                alert(str)
+            } else {
+            e.preventDefault()
             var str_2 = ''
             for (let i = 0; i < warnings.length; i++) {
                 str_2 = str_2 + warnings[i].innerHTML+'\n';

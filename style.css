@@ -309,6 +309,36 @@ small, h2 {
 }
 
 /* ///// */
+/* MOBILE NAV */
+
+.mobile-nav {
+    background: #000;
+    position: fixed;
+    top: 1px;
+    width: 80%;
+    height: 50vh;
+    z-index: 1;
+    display: none;
+}
+
+.mobile-nav a{ 
+    text-decoration: none;
+    color: #fff;
+}
+
+.mobile-nav a:hover {
+    color: #aaa;
+}
+.mobile-nav li{
+    margin: 15px 5px 5px 10px;
+    font-size: 22px;
+}
+
+#cross {
+    stroke: #fff;
+}
+
+/* ///// */
 
 
 /* MEDOA QUERYS */
@@ -332,5 +362,5 @@ small, h2 {
     }
 }
 
-@media screen and (max-width: 1000px) {
-}
+/* @media screen and (max-width: 1000px) {
+} */
