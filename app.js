@@ -207,22 +207,21 @@ window.onload = function() {
     
     // auto fill form
     const all_inputs = document.querySelectorAll('input');
-    console.log(all_inputs);
     all_inputs.forEach((item,index) => {
-        console.log(item,index)
-        console.log(localStorage)
         if(item.type !== 'submit') {
             item.value = localStorage.getItem(item.name);
         }
+        fName = localStorage.getItem('name'); // prevent resend
+        email = localStorage.getItem('email'); // prevent resend
     })
-    
+
     function submitEvent(e){
         e.preventDefault();
         // prevent submittings while warnings       
         var warnings = document.querySelectorAll('.warning');
-        if(fName == null || email == null || age == null || phone == null ||
-            address == null || city == null || postalCode == null || id == null ||
-            password == null ||repeatPassword == null) {
+        if(fName == null && email == null && age == null && phone == null &&
+            address == null && city == null && postalCode == null && id == null &&
+            password == null && repeatPassword == null) {
                 // alert('please, complete all submission form');
                 const modal = document.querySelector('.modal-container')
                 const msg = document.querySelector('#modal-msg')
@@ -264,7 +263,7 @@ window.onload = function() {
                 msg.innerHTML = "Your suscription failed :("; 
                 modal.style.display="block";                
             }) 
-         } else if (localStorage.getItem("name") === fName || localStorage.getItem("email") === email) {
+         } else if (localStorage.getItem("name") == fName || localStorage.getItem("email") == email) {
             //  console.log("YOU ARE ALREADY SUSCRIPTED")
             const modal = document.querySelector('.modal-container');
             const msg = document.querySelector('#modal-msg');
