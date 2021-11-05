@@ -1,5 +1,4 @@
 window.onload = function() {
-
     var fName,email,age,address,city,phone,postalCode,id,password,repeatPassword;
 
     // get all input elements with type "text/password"
@@ -199,30 +198,78 @@ window.onload = function() {
 
     // submit form
     var submit = document.querySelector('input[type=submit]');
-    // the submit event should be added to <form> tag
     submit.parentElement.parentElement.addEventListener('submit',submitEvent);
+       
+    // delete modal on cross click
+    document.querySelector('.cross-icon-modal').addEventListener("click", function(){
+        document.querySelector('.modal-container').style.display="none";
+    });    
+    
+    // auto fill form
+    const all_inputs = document.querySelectorAll('input');
+    console.log(all_inputs);
+    all_inputs.forEach((item,index) => {
+        console.log(item,index)
+        console.log(localStorage)
+        if(item.type !== 'submit') {
+            item.value = localStorage.getItem(item.name);
+        }
+    })
     
     function submitEvent(e){
-        var warnings = document.querySelectorAll('.warning');
+        e.preventDefault();
         // prevent submittings while warnings       
+        var warnings = document.querySelectorAll('.warning');
         if(fName == null || email == null || age == null || phone == null ||
             address == null || city == null || postalCode == null || id == null ||
             password == null ||repeatPassword == null) {
-                e.preventDefault();
-                alert('please, complete all submission form');
-            } else if (warnings.length < 1) {
-                const str = 'Hello '+fName+'!'+'\n'+'Your submission info are:'+'\n'+
-                'Email: '+email+'\n'+'Age: '+age+'\n'+'Phone: '+phone+'\n'+'Address: '+
-                address+'\n'+'City: '+city+'\n'+'Postal Code: '+postalCode+'\n'+
-                'ID Number: '+id;
-                alert(str);
-            } else {
-            e.preventDefault();
-            var str_2 = '';
-            for (let i = 0; i < warnings.length; i++) {
-                str_2 = str_2 + warnings[i].innerHTML+'\n';
-            }
-            alert(str_2);
-        }
+                // alert('please, complete all submission form');
+                const modal = document.querySelector('.modal-container')
+                const msg = document.querySelector('#modal-msg')
+                msg.innerHTML = "Complete all fields, please" 
+                modal.style.display="block";                
+
+        } else if (warnings.length < 1 && localStorage.getItem('name') !== fName && 
+        localStorage.getItem("email")!== email) {
+            // fetch
+            const URL = 'http://curso-dev-2021.herokuapp.com/newsletter'
+            const args = `?name=${fName}&email=${email}&password=${password}&age=${age}&phone=${phone}&address=${address}&city=${city}&postal Code=${postalCode}&id=${id}`
+                
+            fetch(URL+args)
+            .then( (res) => res.json() )
+            .then((user_info) => {
+                const info = Object.entries (user_info);
+                const item_list = document.createElement('ul');
+                info.forEach(item => {
+                    // console.log(item[1]);
+                    if(item[0] !== 'password') { // dont show password
+                        const item_show = document.createElement('li');
+                        item_show.innerHTML = item[0].substring(0,1).toUpperCase()+
+                        item[0].substring(1) +': '+item[1];
+                        item_list.appendChild(item_show);
+                    }
+                    // local storage
+                    localStorage.setItem(item[0],item[1]);
+                })
+
+                const modal = document.querySelector('.modal-container');
+                const msg = document.querySelector('#modal-msg');
+                msg.innerHTML = "Welcome!";
+                modal.appendChild(item_list); 
+                modal.style.display="block";                
+            }).catch((err) => {
+                // console.log(err)
+                const modal = document.querySelector('.modal-container');
+                const msg = document.querySelector('#modal-msg');
+                msg.innerHTML = "Your suscription failed :("; 
+                modal.style.display="block";                
+            }) 
+         } else if (localStorage.getItem("name") === fName || localStorage.getItem("email") === email) {
+            //  console.log("YOU ARE ALREADY SUSCRIPTED")
+            const modal = document.querySelector('.modal-container');
+            const msg = document.querySelector('#modal-msg');
+            msg.innerHTML = "You are already suscripted!"; 
+            modal.style.display="block";                
+        }   
     }
 }

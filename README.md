@@ -16,3 +16,9 @@
 
 `<link>` https://unexcoder.github.io/BaSD-NoiseNews/suscription.html
 
+### Semana 06
+
+- Fetch call
+- Local Storage
+
+`<link>` https://unexcoder.github.io/BaSD-NoiseNews/suscription.html
